@@ -12,6 +12,7 @@ class Umkm extends Model
         'NIK',
         'nama',
         'nowa',
+        'lokasi',
         'deskripsi',
         'linkTP',
         'linkSP',

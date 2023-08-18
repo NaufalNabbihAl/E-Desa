@@ -73,7 +73,7 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="{{ route('warga.edit') }}">Profil</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('dashboardWarga') }}">Dashboard
+                                    <li><a class="dropdown-item" href="{{ route('jadwal_kegiatan.index') }}">Dashboard
                                         </a></li>
                                     <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
                                 </ul>

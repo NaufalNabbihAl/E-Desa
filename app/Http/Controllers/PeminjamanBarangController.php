@@ -70,7 +70,7 @@ class PeminjamanBarangController extends Controller
         ]);
 
         return redirect()->route('peminjaman_barang.index');
-    }
+    }   
 
     /**
      * Display the specified resource.

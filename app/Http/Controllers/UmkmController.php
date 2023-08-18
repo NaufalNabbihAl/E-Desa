@@ -35,6 +35,7 @@ class UmkmController extends Controller
         $request->validate([
             'nama' => 'required',
             'nowa' => 'required',
+            'lokasi' => 'required',
             'deskripsi' => 'required',
             'linkTP' => 'required',
             'linkSP' => 'required',
@@ -48,6 +49,7 @@ class UmkmController extends Controller
             'NIK' => Auth::user()->NIK,
             'nama' => $request->nama,
             'nowa' => $request->nowa,
+            'lokasi' => $request->lokasi,
             'deskripsi' => $request->deskripsi,
             'linkTP' => $request->linkTP,
             'linkSP' => $request->linkSP,
@@ -85,6 +87,7 @@ class UmkmController extends Controller
         $request->validate([
             'nama' => 'required',
             'nowa' => 'required',
+            'lokasi' => 'required',
             'deskripsi' => 'required',
             'linkTP' => 'required',
             'linkSP' => 'required',
@@ -100,6 +103,7 @@ class UmkmController extends Controller
 
         $umkm->nama = $request->nama;
         $umkm->nowa = $request->nowa;
+        $umkm->lokasi = $request->lokasi;
         $umkm->deskripsi = $request->deskripsi;
         $umkm->linkTP = $request->linkTP;
         $umkm->linkSP = $request->linkSP;

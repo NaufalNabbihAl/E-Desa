@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('NIK');
             $table->foreign('NIK')->references('NIK')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('terlapor');
+            $table->string('tamu');
+            $table->foreign('tamu')->references('id')->on('data_tamu')->onDelete('cascade')->onUpdate('cascade');
             $table->string('lokasi');
             $table->date('tanggal');
             $table->string('deskripsi');

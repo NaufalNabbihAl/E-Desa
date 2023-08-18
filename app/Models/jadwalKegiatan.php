@@ -10,7 +10,7 @@ class jadwalKegiatan extends Model
     use HasFactory;
     protected $fillable = [
         'pelaksana',
-        'Lokasi',
+        'lokasi',
         'waktu',
         'waktuSelesai',
         'status',

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\jadwalKegiatan;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JadwalKegiatanController extends Controller
 {
@@ -21,7 +23,7 @@ class JadwalKegiatanController extends Controller
      */
     public function create()
     {
-        //
+        return view('jadwal_kegiatan.create');
     }
 
     /**
@@ -29,7 +31,21 @@ class JadwalKegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'pelaksana' => 'required',
+            'lokasi' => 'required',
+            'waktu' => 'required',
+            'waktuSelesai' => 'required',
+            'pembahasan' => 'required',
+        ]);
+        jadwalKegiatan::create([
+            'pelaksana' => $request->pelaksana,
+            'lokasi' => $request->lokasi,
+            'waktu' => $request->waktu,
+            'waktuSelesai' => $request->waktuSelesai,
+            'pembahasan' => $request->pembahasan
+        ]);
+        return redirect()->route('jadwal_kegiatan.index')->with('success', 'Input anda berhasil');
     }
 
     /**

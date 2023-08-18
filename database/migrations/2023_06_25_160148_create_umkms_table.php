@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('NIK');
             $table->string('nama');
             $table->string('nowa');
+            $table->string('lokasi');
             $table->text('deskripsi');
             $table->string('linkTP');
             $table->string('linkSP');

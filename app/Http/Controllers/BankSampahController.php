@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BankSampah;
+use App\Models\JadwalPengambilanSampah;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -13,15 +14,23 @@ class BankSampahController extends Controller
      */
     public function index()
     {
-        $bank = BankSampah::all();
-        return view('bank_sampah.index', compact('bank'));
+
+        return view('bank_sampah.index');
     }
 
     public function jadwal()
     {
-
-        return view('bank_sampah.jadwal');
+        $jadwals = JadwalPengambilanSampah::all();
+        return view('bank_sampah.jadwal', compact('jadwals'));
     }
+
+    public function data()
+    {
+        $bank = BankSampah::all();
+        return view('bank_sampah.bank', compact('bank'));
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -29,7 +38,6 @@ class BankSampahController extends Controller
     public function create()
     {
         return view('kegiatan_warga.inputdatasampah');
-
     }
 
     /**

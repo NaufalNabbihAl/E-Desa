@@ -39,13 +39,14 @@ class Kegiatan_wargaController extends Controller
         $umkm = Umkm::where('id', $id)->first();
         return view('admin.kegiatan_warga.detailumkm', ['umkm' => $umkm]);
     }
-    public function Updateumkm($id)
+    public function Updateumkm($request)
     {
         $umkm = Umkm::where('id', $request->id)->first();
 
         $request->validate([
             'nama' => 'required',
             'nowa' => 'required',
+            'lokasi' => 'required',
             'deskripsi' => 'required',
             'linkTP' => 'required',
             'linkSP' => 'required',
@@ -55,6 +56,7 @@ class Kegiatan_wargaController extends Controller
         $umkm->update([
             'nama' => $request->pelaksana,
             'nowa' => $request->Lokasi,
+            'lokasi' => $request->waktu,
             'waktu' => $request->waktu,
             'waktuSelesai' => $request->waktuSelesai,
             'status' => $request->status,
