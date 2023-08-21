@@ -10,10 +10,9 @@ class WajibLapor extends Model
     use HasFactory;
     protected $fillable = [
         'NIK',
-        'terlapor',
-        'ktp',
         'lokasi',
         'tanggal',
+        'pulang',
         'deskripsi'
     ];
 

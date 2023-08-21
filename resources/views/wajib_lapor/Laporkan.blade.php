@@ -79,6 +79,9 @@
     </aside>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+        @php
+            var_dump($errors);
+        @endphp
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
@@ -111,7 +114,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="aldeskrispasan" class="form-label">Deskripsi Kejadian</label>
-                                        <textarea name="deskrisp" id="deskrisp" cols="30" rows="5" class="form-control"></textarea>
+                                        <textarea name="deskripsi" id="deskrisp" cols="30" rows="5" class="form-control"></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="tanggal" class="form-label">Tanggal Kejadian</label>

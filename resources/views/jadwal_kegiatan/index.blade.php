@@ -144,10 +144,12 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{ $jwl->pelaksana }}</td>
-                                    <td>{{ $jwl->lokasi }}</td>
-                                    <td>{{ $jwl->waktu }}-{{ $jwl->waktuSelesai }}</td>
-                                    <td>{{ $jwl->pembahasan }}</td>
+                                    @foreach ($jadwal as $jwl)
+                                        <td>{{ $jwl->pelaksana }}</td>
+                                        <td>{{ $jwl->lokasi }}</td>
+                                        <td>{{ $jwl->waktu }}-{{ $jwl->waktuSelesai }}</td>
+                                        <td>{{ $jwl->pembahasan }}</td>
+                                    @endforeach
                                 </tr>
                             </tbody>
 

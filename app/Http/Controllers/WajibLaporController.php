@@ -42,6 +42,7 @@ class WajibLaporController extends Controller
             'bukti' => 'required',
             'lokasi' => 'required',
             'tanggal' => 'required',
+            'pulang' => 'required',
             'deskripsi' => 'required'
         ]);
 
@@ -49,6 +50,7 @@ class WajibLaporController extends Controller
             'NIK' => Auth::user()->NIK,
             'lokasi' => $request->lokasi,
             'tanggal' => $request->tanggal,
+            'pulang' => $request->pulang,
             'deskripsi' => $request->deskripsi
         ]);
 
