@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->string('NIK')->primary();
-            $table->enum('role', ['warga', 'admin', 'rw', 'rt', 'lurah', 'adminRTRW', 'adminLogistik', 'adminDesa', 'adminLanding', 'AdminForum', 'adminKegiatan']);
+            $table->enum('role', ['warga', 'admin', 'rw', 'rt']);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

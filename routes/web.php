@@ -14,6 +14,7 @@ use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\RtRwController;
 use App\Http\Controllers\UmkmController;
 use App\Http\Controllers\WajibLaporController;
+use App\Models\Warga;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -81,38 +82,52 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/kegiatan_warga/jadwalkegiatan/detail/{id}', [Kegiatan_wargaController::class, 'Detailumkm'])->name('kegiatanWarga.Detailumkm');
     Route::put('/admin/kegiatan_warga/jadwalkegiatan/update', [Kegiatan_wargaController::class, 'Updatejadwalkegiatan'])->name('kegiatanWarga.update');
 
-    Route::get('/warga', [DashboardController::class, 'indexWarga'])->name('dashboardWarga');
-    Route::get('warga/search', [WargaController::class, 'search'])->name('warga.search');
 
-    Route::get('/warga/edit/', [WargaController::class, 'edit'])->name('warga.edit');
-    Route::put('/warga/update/', [WargaController::class, 'update'])->name('warga.update');
+    Route::prefix('warga')->group(function () {
 
-    Route::get('/warga/peminjamanbarang', [PeminjamanBarangController::class, 'index'])->name('peminjaman_barang.index');
-    Route::get('/warga/peminjamanbarang/create', [PeminjamanBarangController::class, 'create'])->name('peminjaman_barang.create');
-    Route::post('/warga/peminjamanbarang/store', [PeminjamanBarangController::class, 'store'])->name('peminjaman_barang.store');
+        Route::get('/', [DashboardController::class, 'indexWarga'])->name('dashboardWarga');
 
-    Route::get('/warga/jadwalkegiatan', [JadwalKegiatanController::class, 'index'])->name('jadwal_kegiatan.index');
-    Route::get('/warga/jadwalkegiatan/create', [JadwalKegiatanController::class, 'create'])->name('jadwal_kegiatan.create');
-    Route::post('/warga/jadwalkegiatan/store', [JadwalKegiatanController::class, 'store'])->name('jadwal_kegiatan.store');
+        Route::name('warga.')->group(function () {
+            Route::get('search', [WargaController::class, 'search'])->name('search');
+            Route::get('edit', [WargaController::class, 'edit'])->name('edit');
+            Route::put('update', [WargaController::class, 'update'])->name('update');
+        });
 
-    Route::get('/warga/wajib_lapor', [WajibLaporController::class, 'index'])->name('wajib_lapor.index');
-    Route::get('/warga/wajib_lapor/laporTamu', [WajibLaporController::class, 'laporTamu'])->name('wajib_lapor.laporTamu');
-    Route::get('/warga/wajib_lapor/laporkan', [WajibLaporController::class, 'laporkan'])->name('wajib_lapor.laporkan');
-    Route::post('/warga/wajib_lapor/store', [WajibLaporController::class, 'store'])->name('wajib_lapor.store');
-    Route::post('/warga/wajib_lapor/storeLaporan', [WajibLaporController::class, 'storeLaporan'])->name('wajib_lapor.storeLaporan');
+        Route::name('peminjaman_barang.')->prefix('peminjamanbarang')->group(function () {
+            Route::get('/', [PeminjamanBarangController::class, 'index'])->name('index');
+            Route::get('create', [PeminjamanBarangController::class, 'create'])->name('create');
+            Route::post('store', [PeminjamanBarangController::class, 'store'])->name('store');
+        });
 
-    Route::get('/warga/umkm', [UmkmController::class, 'index'])->name('umkm.index');
-    Route::get('/warga/umkm/create', [UmkmController::class, 'create'])->name('umkm.create');
-    Route::get('/warga/umkm/edit/{id}', [UmkmController::class, 'edit'])->name('umkm.edit');
-    Route::delete('/warga/umkm/delete', [UmkmController::class, 'destroy'])->name('umkm.destroy');
-    Route::put('/warga/umkm/update', [UmkmController::class, 'update'])->name('umkm.update');
-    Route::post('/warga/umkm/store', [UmkmController::class, 'store'])->name('umkm.store');
+        Route::name('jadwal_kegiatan.')->prefix('jadwalkegiatan')->group(function () {
+            Route::get('/', [JadwalKegiatanController::class, 'index'])->name('index');
+            Route::get('create', [JadwalKegiatanController::class, 'create'])->name('create');
+            Route::post('store', [JadwalKegiatanController::class, 'store'])->name('store');
+        });
 
-    Route::get('/warga/bank_sampah', [BankSampahController::class, 'index'])->name('bank_sampah.index');
-    Route::get('/warga/bank_sampah/data', [BankSampahController::class, 'data'])->name('bank_sampah.data');
-    Route::get('/warga/jadwal_pengambilan', [BankSampahController::class, 'jadwal'])->name('bank_sampah.jadwal');
+        Route::name('wajib_lapor.')->prefix('wajiblapor')->group(function () {
+            Route::get('/', [WajibLaporController::class, 'index'])->name('index');
+            Route::get('laporTamu', [WajibLaporController::class, 'laporTamu'])->name('laporTamu');
+            Route::get('laporkan', [WajibLaporController::class, 'laporkan'])->name('laporkan');
+            Route::post('store', [WajibLaporController::class, 'store'])->name('store');
+            Route::post('storeLaporan', [WajibLaporController::class, 'storeLaporan'])->name('storeLaporan');
+        });
 
-    Route::get('/warga/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
+        Route::name('umkm.')->prefix('umkm')->group(function () {
+            Route::get('/', [UmkmController::class, 'index'])->name('index');
+            Route::get('create', [UmkmController::class, 'create'])->name('create');
+            Route::post('store', [UmkmController::class, 'store'])->name('store');
+            Route::get('edit/{id}', [UmkmController::class, 'edit'])->name('edit');
+            Route::put('update', [UmkmController::class, 'update'])->name('update');
+            Route::delete('delete', [UmkmController::class, 'destroy'])->name('destroy');
+        });
 
-    Route::get('/warga/laporan_keuangan', [LaporanKeuanganController::class, 'index'])->name('laporan_keuangan.index');
+        Route::get('bank_sampah', [BankSampahController::class, 'index'])->name('bank_sampah.index');
+        Route::get('bank_sampah/data', [BankSampahController::class, 'data'])->name('bank_sampah.data');
+        Route::get('jadwal_pengambilan', [BankSampahController::class, 'jadwal'])->name('bank_sampah.jadwal');
+
+        Route::get('pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
+
+        Route::get('laporan_keuangan', [LaporanKeuanganController::class, 'index'])->name('laporan_keuangan.index');
+    });
 });
