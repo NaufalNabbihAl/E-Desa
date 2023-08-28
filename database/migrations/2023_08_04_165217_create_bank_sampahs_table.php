@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('bank_sampahs', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('NIK');
+            $table->foreign('NIK')->references('NIK')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('berat');
             $table->integer('pendapatan');
             $table->date('tanggal');

@@ -37,7 +37,7 @@ class BankSampahController extends Controller
      */
     public function create()
     {
-        return view('kegiatan_warga.inputdatasampah');
+        // return view('kegiatan_warga.inputdatasampah');
     }
 
     /**
@@ -46,19 +46,18 @@ class BankSampahController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required',
+            'nik' => 'required|exists:users,NIK',
             'berat' => 'required',
+            'kategori' => 'require',
             'pendapatan' => 'required',
-            'tanggal' => 'required',
-
         ]);
         BankSampah::create([
-            'nama' => $request->nama,
+            'NIK' => $request->nik,
             'berat' => $request->berat,
             'pendapatan' => $request->pendapatan,
             'tanggal' => Carbon::now(),
         ]);
-        return redirect()->route('kegiatan_warga.index')->with('success', 'Input anda berhasil');
+        return redirect()->route('bank_sampah.data')->with('success', 'Input anda berhasil');
     }
 
     /**

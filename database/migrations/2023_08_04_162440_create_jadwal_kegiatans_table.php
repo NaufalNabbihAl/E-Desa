@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('pelaksana');
             $table->string('Lokasi');
-            $table->time('waktu');
-            $table->time('waktuSelesai');
-            $table->enum('status', ['Diproses', 'Ditolak', 'Diterima']);
+            $table->dateTime('waktu');
+            $table->dateTime('waktuSelesai');
+            $table->string('tingkat');
             $table->string('pembahasan');
         });
     }

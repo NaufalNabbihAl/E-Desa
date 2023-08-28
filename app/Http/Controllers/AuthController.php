@@ -19,11 +19,11 @@ class AuthController extends Controller
             'password' => $request->password
         ];
 
-        if(Auth::guard('web')->attempt($data)){
+        if (Auth::guard('web')->attempt($data)) {
             if (Auth::user()->role == 'warga') {
                 return redirect('/')->with('success', 'Login Berhasil');
-            } else if (Auth::user()->role == 'admin') {
-                return redirect('/admin')->with('success', 'Login Berhasil');
+            } else {
+                return redirect('/main')->with('success', 'Login Berhasil');
             }
         } else {
             return back()->with('error', 'Email atau Password salah');
@@ -33,6 +33,6 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('/login');
+        return redirect('/');
     }
 }

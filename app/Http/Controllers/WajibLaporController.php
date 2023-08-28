@@ -19,6 +19,11 @@ class WajibLaporController extends Controller
     }
     public function laporTamu()
     {
+        if (Auth::user()->role == 'admin') {
+            $data = DataTamu::join('wajib_lapors', 'data_tamu.wajib_lapors_id', '=', 'wajib_lapors.id')->get();
+            return view('wajib_lapor.LaporTamu', compact('data'));
+        }
+
         return view('wajib_lapor.LaporTamu');
     }
     public function laporkan()

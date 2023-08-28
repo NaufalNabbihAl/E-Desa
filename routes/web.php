@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DesaController;
 use App\Http\Controllers\JadwalKegiatanController;
 use App\Http\Controllers\Kegiatan_wargaController;
+use App\Http\Controllers\LaporanKegiatanController;
 use App\Http\Controllers\LaporanKeuanganController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\RtRwController;
@@ -83,7 +84,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/admin/kegiatan_warga/jadwalkegiatan/update', [Kegiatan_wargaController::class, 'Updatejadwalkegiatan'])->name('kegiatanWarga.update');
 
 
-    Route::prefix('warga')->group(function () {
+    Route::prefix('main')->group(function () {
 
         Route::get('/', [DashboardController::class, 'indexWarga'])->name('dashboardWarga');
 
@@ -124,12 +125,15 @@ Route::middleware('auth')->group(function () {
 
         Route::get('bank_sampah', [BankSampahController::class, 'index'])->name('bank_sampah.index');
         Route::get('bank_sampah/data', [BankSampahController::class, 'data'])->name('bank_sampah.data');
+        Route::post('bank_sampah/store', [BankSampahController::class, 'store'])->name('bank_sampah.store');
         Route::get('jadwal_pengambilan', [BankSampahController::class, 'jadwal'])->name('bank_sampah.jadwal');
 
         Route::get('pengumuman/index', [PengumumanController::class, 'index'])->name('pengumuman.index');
         Route::get('pengumuman/create', [PengumumanController::class, 'create'])->name('pengumuman.create');
         Route::post('pengumuman/store', [PengumumanController::class, 'store'])->name('pengumuman.store');
 
-        Route::get('laporan_keuangan', [LaporanKeuanganController::class, 'index'])->name('laporan_keuangan.index');
+        Route::get('laporan_kegiatan', [LaporanKegiatanController::class, 'index'])->name('laporan_kegiatan.index');
+        Route::get('laporan_kegiatan/create', [LaporanKegiatanController::class, 'create'])->name('laporan_kegiatan.create');
+        Route::get('laporan_kegiatan/store', [LaporanKegiatanController::class, 'store'])->name('laporan_kegiatan.store');
     });
 });

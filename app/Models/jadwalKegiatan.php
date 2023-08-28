@@ -13,7 +13,7 @@ class jadwalKegiatan extends Model
         'lokasi',
         'waktu',
         'waktuSelesai',
-        'status',
+        'tingkat',
         'pembahasan',
     ];
     public $timestamps = false;

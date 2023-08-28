@@ -10,7 +10,7 @@ class BankSampah extends Model
     use HasFactory;
     // protected $table = 'bank_sampah';
     protected $fillable = [
-        'nama',
+        'NIK',
         'berat',
         'pendapatan',
         'tanggal',

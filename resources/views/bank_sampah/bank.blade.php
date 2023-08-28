@@ -1,83 +1,6 @@
-@extends('layout.wg')
+@extends('layout.warga')
 @section('content')
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-light-light elevation-4" style="background-color: #387372;">
-        <!-- Brand Logo -->
-        <a href="/" class="brand-link text-white">
-            <span class="brand-text font-weight-light">E-Desa</span>
-        </a>
-
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <!-- Sidebar user panel (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img src="{{ url('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
-                </div>
-                <div class="info">
-                    <a href="#" class="d-block text-white">Warga</a>
-                </div>
-            </div>
-
-            <!-- Sidebar Menu -->
-            <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                    data-accordion="false">
-                    <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-                    <li class="nav-item menu-open">
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('jadwal_kegiatan.index') }}" class="nav-link active">
-                                    <p style="color: white;">Jadwal Kegiatan Warga</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('jadwal_kegiatan.index') }}" class="nav-link">
-                            <p style="color: white;">Wajib Lapor</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('umkm.index') }}" class="nav-link">
-                            <p style="color: white;">UMKM</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('peminjaman_barang.index') }}" class="nav-link">
-                            <p style="color: white;">Peminjaman Barang</p>
-                        </a>
-                    </li>
-                    <li class="nav-item menu-open">
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('bank_sampah.index') }}" class="nav-link active">
-                                    <p style="color: white;">Bank Sampah</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('laporan_keuangan.index') }}" class="nav-link">
-                            <p style="color: white;">Laporan Keuangan</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <p style="color: white;">Forum</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('pengumuman.index') }}" class="nav-link">
-                            <p style="color: white;">Pengumuman</p>
-                        </a>
-                </ul>
-            </nav>
-            <!-- /.sidebar-menu -->
-        </div>
-        <!-- /.sidebar -->
-    </aside>
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -88,29 +11,64 @@
                         Bank Sampah
                     </div>
                     <div class="card-body">
-                        <div class="container" style="border:1px solid #387372;">
-                            <table class="table m-0">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="col-2">Tanggal</th>
-                                        <th scope="col" class="col-2">Kategori</th>
-                                        <th scope="col" class="col-2">Berat</th>
-                                        <th scope="col" class="col-2">Pendapatan</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @csrf
-                                    @foreach ($bank as $b)
+                        @if (Auth::user()->role == 'warga')
+                            <div class="container" style="border:1px solid #387372;">
+                                <table class="table m-0">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $b->tanggal }}</td>
-                                            <td>{{ $b->kategori }}</td>
-                                            <td>{{ $b->berat }} kg</td>
-                                            <td>RP {{ $b->pendapatan }}</td>
+                                            <th scope="col" class="col-2">Tanggal</th>
+                                            <th scope="col" class="col-2">Kategori</th>
+                                            <th scope="col" class="col-2">Berat</th>
+                                            <th scope="col" class="col-2">Pendapatan</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                    </thead>
+                                    <tbody>
+                                        @csrf
+                                        @foreach ($bank as $b)
+                                            <tr>
+                                                <td>{{ $b->tanggal }}</td>
+                                                <td>{{ $b->kategori }}</td>
+                                                <td>{{ $b->berat }} kg</td>
+                                                <td>RP {{ $b->pendapatan }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
+                            <div class="card-body">
+                                <form action="{{ route('bank_sampah.store') }}" method="post">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="mb-3 col">
+                                            <label for="nik" class="form-label">NIK</label>
+                                            <input type="text" class="form-control" id="nik" name="nik">
+                                        </div>
+                                        <div class="mb-3 col">
+                                            <label for="berat" class="form-label">Berat</label>
+                                            <input type="text" class="form-control" id="berat" name="berat">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <label for="kategori" class="form-label">Kategori</label>
+                                            <select class="form-select  text-center" aria-label="Default select example">
+                                                <option selected disabled>Pilih Kategori</option>
+                                                <option value="plastik">Plastik</option>
+                                                <option value="kertas">Kertas</option>
+                                                <option value="besi">Besi</option>
+                                            </select>
+                                        </div>
+                                        <div class=" col ">
+                                            <label for="pendapatan" class="form-label">Pendapatan</label>
+                                            <input type="text" class="form-control" id="pendapatan" name="pendapatan">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn ml-auto text-white"
+                                        style="background-color: #387372;">Simpan</button>
+                                </form>
+                            </div>
+                        @endif
                     </div>
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
