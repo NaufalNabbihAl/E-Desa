@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pengumuman;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PengumumanController extends Controller
@@ -21,6 +22,7 @@ class PengumumanController extends Controller
      */
     public function create()
     {
+        return view('pengumuman.create');
     }
 
     /**
@@ -28,7 +30,16 @@ class PengumumanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'judul' => 'required',
+            'isi' => 'required'
+        ]);
+        Pengumuman::create([
+            'judul' => $request->judul,
+            'isi' => $request->isi,
+            'tanggal' => Carbon::now()
+        ]);
+        return redirect()->route('pengumuman.index')->with('success', 'Pengajuan anda berhasil, silakan menunggu konfirmasi berikutnya');
     }
 
     /**

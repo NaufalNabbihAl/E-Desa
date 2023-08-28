@@ -126,7 +126,9 @@ Route::middleware('auth')->group(function () {
         Route::get('bank_sampah/data', [BankSampahController::class, 'data'])->name('bank_sampah.data');
         Route::get('jadwal_pengambilan', [BankSampahController::class, 'jadwal'])->name('bank_sampah.jadwal');
 
-        Route::get('pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
+        Route::get('pengumuman/index', [PengumumanController::class, 'index'])->name('pengumuman.index');
+        Route::get('pengumuman/create', [PengumumanController::class, 'create'])->name('pengumuman.create');
+        Route::post('pengumuman/store', [PengumumanController::class, 'store'])->name('pengumuman.store');
 
         Route::get('laporan_keuangan', [LaporanKeuanganController::class, 'index'])->name('laporan_keuangan.index');
     });

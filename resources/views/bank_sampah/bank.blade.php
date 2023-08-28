@@ -92,11 +92,10 @@
                             <table class="table m-0">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Tanggal</th>
-                                        <th scope="col">Lokasi</th>
-                                        <th scope="col">Kategori</th>
-                                        <th scope="col">Berat</th>
-                                        <th scope="col">Pendapatan</th>
+                                        <th scope="col" class="col-2">Tanggal</th>
+                                        <th scope="col" class="col-2">Kategori</th>
+                                        <th scope="col" class="col-2">Berat</th>
+                                        <th scope="col" class="col-2">Pendapatan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -104,7 +103,6 @@
                                     @foreach ($bank as $b)
                                         <tr>
                                             <td>{{ $b->tanggal }}</td>
-                                            <td>{{ $b->lokasi }}</td>
                                             <td>{{ $b->kategori }}</td>
                                             <td>{{ $b->berat }} kg</td>
                                             <td>RP {{ $b->pendapatan }}</td>
