@@ -136,6 +136,8 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+
+                    {{-- jadwal kegiatan --}}
                     <li class="nav-item menu-open">
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
@@ -148,6 +150,8 @@
                             </li>
                         </ul>
                     </li>
+
+                    {{-- wajib lapor --}}
                     <li class="nav-item menu-open">
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
@@ -160,6 +164,8 @@
                             </li>
                         </ul>
                     </li>
+
+                    {{-- umkm --}}
                     <li class="nav-item menu-open">
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
@@ -172,18 +178,24 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item menu-open">
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('peminjaman_barang.index') }}"
-                                    class="nav-link
-                            @if (Str::contains(Route::currentRouteName(), 'peminjaman_barang')) active @endif
-                        ">
-                                    <p style="color: white;">Peminjaman Barang</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+
+                    {{-- peminjaman barang --}}
+                    @if (Auth::user()->role != 'rt' || Auth::user()->role != 'rw')
+                        <li class="nav-item menu-open">
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('peminjaman_barang.index') }}"
+                                        class="nav-link
+                                        @if (Str::contains(Route::currentRouteName(), 'peminjaman_barang')) active @endif
+                                        ">
+                                        <p style="color: white;">Peminjaman Barang</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
+
+                    {{-- bank sampah --}}
                     <li class="nav-item menu-open">
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
@@ -196,6 +208,8 @@
                             </li>
                         </ul>
                     </li>
+
+                    {{-- laporan keuangan --}}
                     <li class="nav-item menu-open">
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
@@ -208,6 +222,8 @@
                             </li>
                         </ul>
                     </li>
+
+                    {{-- forum --}}
                     <li class="nav-item menu-open">
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
@@ -220,6 +236,8 @@
                             </li>
                         </ul>
                     </li>
+
+                    {{-- pengumuman --}}
                     <li class="nav-item menu-open">
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
