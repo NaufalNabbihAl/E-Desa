@@ -12,8 +12,7 @@ class laporan_kegiatan extends Model
     protected $fillable = [
         'laporan_kegiatan',
         'nama_kegiatan',
-        'tanggal',
-        'file'
+        'tanggal'
     ];
     public $timestamps = false;
 }
