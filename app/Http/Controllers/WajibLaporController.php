@@ -60,16 +60,16 @@ class WajibLaporController extends Controller
         ]);
 
         foreach ($request->terlapor as $key => $value) {
-            $data_tamu = new DataTamu();
-            $data_tamu->wajib_lapors_id = $WajibLapor->id;
-            $data_tamu->nama = $value;
             $ktp = $request->bukti[$key];
-            $ktpName = time() . '.' . $ktp->getClientOriginalExtension();
+            $ktpName = $key. '_' . time() . '.' . $ktp->getClientOriginalExtension();
             $ktp->move(public_path('upload/wajibLapor/ktp'), $ktpName);
-            $data_tamu->ktp = $ktpName;
-            $data_tamu->save();
-        }
 
+            DataTamu::create([
+                'wajib_lapors_id' => $WajibLapor->id,
+                'nama' => $value,
+                'ktp' => $ktpName
+            ]);
+        }
 
         return redirect()->route('wajib_lapor.index')->with('success', 'Pengajuan anda berhasil, silakan menunggu konfirmasi berikutnya');
     }
@@ -96,7 +96,7 @@ class WajibLaporController extends Controller
             $data_tamu->wajib_lapors_id = $WajibLapor->id;
             $data_tamu->nama = $value;
             $bukti = $request->bukti[$key];
-            $buktiName = time() . '.' . $bukti->getClientOriginalExtension();
+            $buktiName = $key . '_' . time() . '.' . $bukti->getClientOriginalExtension();
             $bukti->move(public_path('upload/wajibLapor/bukti'), $buktiName);
             $data_tamu->bukti = $buktiName;
             $data_tamu->save();
