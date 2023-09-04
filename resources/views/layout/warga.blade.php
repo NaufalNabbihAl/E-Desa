@@ -2,68 +2,69 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>E- Desa</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ url('plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url('plugins/fontawesome-free/css/all.min.css') }}" />
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="{{ url('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ url('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}" />
     <!-- iCheck -->
-    <link rel="stylesheet" href="{{ url('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}" />
     <!-- JQVMap -->
-    <link rel="stylesheet" href="{{ url('plugins/jqvmap/jqvmap.min.css') }}">
+    <link rel="stylesheet" href="{{ url('plugins/jqvmap/jqvmap.min.css') }}" />
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ url('dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ url('dist/css/adminlte.min.css') }}" />
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="{{ url('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+    <link rel="stylesheet" href="{{ url('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}" />
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="{{ url('plugins/daterangepicker/daterangepicker.css') }}">
+    <link rel="stylesheet" href="{{ url('plugins/daterangepicker/daterangepicker.css') }}" />
     <!-- summernote -->
-    <link rel="stylesheet" href="{{ url('plugins/summernote/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="{{ url('plugins/summernote/summernote-bs4.min.css') }}" />
 </head>
 
 <body id="page-top">
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-light-light elevation-4" style="background-color: #387372;">
+    <aside class="main-sidebar sidebar-light-light elevation-4" style="background-color: #387372">
         <!-- Brand Logo -->
         <a href="/" class="brand-link text-white">
             <span class="brand-text font-weight-light">E-Desa</span>
         </a>
 
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <!-- Sidebar user panel (optional) -->
-            <div class="info">
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="row justify-content-between">
-                        <div class="col-6">
-                            <a href="{{ route('warga.edit') }}" class="d-block text-white">
-                                {{ App\Models\Warga::where('NIK', Auth::user()->NIK)->get('nama')->first()->nama }}
-                            </a>
-                        </div>
-                        <div class="col-4">
-                            <a href="{{ route('logout') }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M16 17l5-5-5-5M19.8 12H9M10 3H4v18h6" />
-                                </svg>
-                            </a>
-                        </div>
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-6">
+                        <a href="{{ route('warga.edit') }}" class="d-block text-white">
+                            {{ App\Models\Warga::where('NIK', Auth::user()->NIK)->get('nama')->first()->nama }}
+                        </a>
+                    </div>
+                    <div class="col-4 text-right">
+                        <a href="{{ route('logout') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M16 17l5-5-5-5M19.8 12H9M10 3H4v18h6" />
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </div>
+        </div>
 
+        <!-- Sidebar -->
+        <div class="sidebar">
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -74,11 +75,8 @@
                     <li class="nav-item menu-open">
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#"
-                                    class="nav-link
-                                    @if (Str::contains(Route::currentRouteName(), 'dashboard')) active @endif
-                                    ">
-                                    <p style="color: white;">Dashboard</p>
+                                <a href="#" class="nav-link @if (Str::contains(Route::currentRouteName(), 'dashboard')) active @endif">
+                                    <p style="color: white">Dashboard</p>
                                 </a>
                             </li>
                         </ul>
@@ -89,10 +87,10 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{ route('jadwal_kegiatan.index') }}"
-                                    class="nav-link
-                                    @if (Str::contains(Route::currentRouteName(), 'jadwal_kegiatan')) active @endif
-                                    ">
-                                    <p style="color: white;">Jadwal Kegiatan Warga</p>
+                                    class="nav-link @if (Str::contains(Route::currentRouteName(), 'jadwal_kegiatan')) active @endif">
+                                    <p style="color: white">
+                                        Jadwal Kegiatan Warga
+                                    </p>
                                 </a>
                             </li>
                         </ul>
@@ -103,10 +101,8 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{ route('wajib_lapor.index') }}"
-                                    class="nav-link
-                                    @if (Str::contains(Route::currentRouteName(), 'wajib_lapor')) active @endif
-                                    ">
-                                    <p style="color: white;">Wajib Lapor</p>
+                                    class="nav-link @if (Str::contains(Route::currentRouteName(), 'wajib_lapor')) active @endif">
+                                    <p style="color: white">Wajib Lapor</p>
                                 </a>
                             </li>
                         </ul>
@@ -117,10 +113,8 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{ route('umkm.index') }}"
-                                    class="nav-link
-                            @if (Str::contains(Route::currentRouteName(), 'umkm')) active @endif
-                        ">
-                                    <p style="color: white;">UMKM</p>
+                                    class="nav-link @if (Str::contains(Route::currentRouteName(), 'umkm')) active @endif">
+                                    <p style="color: white">UMKM</p>
                                 </a>
                             </li>
                         </ul>
@@ -132,10 +126,10 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('peminjaman_barang.index') }}"
-                                        class="nav-link
-                                        @if (Str::contains(Route::currentRouteName(), 'peminjaman_barang')) active @endif
-                                        ">
-                                        <p style="color: white;">Peminjaman Barang</p>
+                                        class="nav-link @if (Str::contains(Route::currentRouteName(), 'peminjaman_barang')) active @endif">
+                                        <p style="color: white">
+                                            Peminjaman Barang
+                                        </p>
                                     </a>
                                 </li>
                             </ul>
@@ -147,10 +141,8 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{ route('bank_sampah.index') }}"
-                                    class="nav-link
-                            @if (Str::contains(Route::currentRouteName(), 'bank_sampah')) active @endif
-                        ">
-                                    <p style="color: white;">Bank Sampah</p>
+                                    class="nav-link @if (Str::contains(Route::currentRouteName(), 'bank_sampah')) active @endif">
+                                    <p style="color: white">Bank Sampah</p>
                                 </a>
                             </li>
                         </ul>
@@ -161,10 +153,10 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{ route('laporan_kegiatan.index') }}"
-                                    class="nav-link
-                            @if (Str::contains(Route::currentRouteName(), 'laporan_kegiatan')) active @endif
-                        ">
-                                    <p style="color: white;">Laporan Kegiatan</p>
+                                    class="nav-link @if (Str::contains(Route::currentRouteName(), 'laporan_kegiatan')) active @endif">
+                                    <p style="color: white">
+                                        Laporan Kegiatan
+                                    </p>
                                 </a>
                             </li>
                         </ul>
@@ -174,11 +166,8 @@
                     <li class="nav-item menu-open">
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#"
-                                    class="nav-link
-                            @if (Str::contains(Route::currentRouteName(), 'forum')) active @endif
-                        ">
-                                    <p style="color: white;">Forum</p>
+                                <a href="#" class="nav-link @if (Str::contains(Route::currentRouteName(), 'forum')) active @endif">
+                                    <p style="color: white">Forum</p>
                                 </a>
                             </li>
                         </ul>
@@ -189,10 +178,8 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{ route('pengumuman.index') }}"
-                                    class="nav-link
-                            @if (Str::contains(Route::currentRouteName(), 'pengumuman')) active @endif
-                        ">
-                                    <p style="color: white;">Pengumuman</p>
+                                    class="nav-link @if (Str::contains(Route::currentRouteName(), 'pengumuman')) active @endif">
+                                    <p style="color: white">Pengumuman</p>
                                 </a>
                             </li>
                         </ul>
@@ -204,13 +191,10 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="#"
-                                        class="nav-link
-                                @if (Str::contains(Route::currentRouteName(), 'artikel')) active @endif
-                                ">
-                                        <p style="color: white;">Artikel</p>
+                                        class="nav-link @if (Str::contains(Route::currentRouteName(), 'artikel')) active @endif">
+                                        <p style="color: white">Artikel</p>
                                     </a>
                                 </li>
-
                             </ul>
                         </li>
 
@@ -219,10 +203,8 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="#"
-                                        class="nav-link
-                                @if (Str::contains(Route::currentRouteName(), 'galeri')) active @endif
-                                ">
-                                        <p style="color: white;">Galeri</p>
+                                        class="nav-link @if (Str::contains(Route::currentRouteName(), 'galeri')) active @endif">
+                                        <p style="color: white">Galeri</p>
                                     </a>
                                 </li>
                             </ul>
@@ -236,17 +218,16 @@
     </aside>
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background-color: #54BAB9; ">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background-color: #54bab9">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"
-                        style="color: white;"></i></a>
+                        style="color: white"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="index.html" class="nav-link link-light text-white">
-                    @php
-                        $routeName = Route::currentRouteName();
+                <a href="#" class="nav-link link-light text-white">
+                    @php$routeName = Route::currentRouteName();
                         if (Str::contains($routeName, 'jadwal_kegiatan')) {
                             echo 'Jadwal Kegiatan';
                         }
@@ -308,14 +289,13 @@
 
     @yield('content')
 
-
     <!-- jQuery -->
     <script src="{{ url('plugins/jquery/jquery.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="{{ url('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
-        $.widget.bridge('uibutton', $.ui.button)
+        $.widget.bridge("uibutton", $.ui.button);
     </script>
     <!-- Bootstrap 4 -->
     <script src="{{ url('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -332,11 +312,15 @@
     <script src="{{ url('plugins/moment/moment.min.js') }}"></script>
     <script src="{{ url('plugins/daterangepicker/daterangepicker.js') }}"></script>
     <!-- Tempusdominus Bootstrap 4 -->
-    <script src="{{ url('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <script
+        src="{{ url('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}">
+    </script>
     <!-- Summernote -->
     <script src="{{ url('plugins/summernote/summernote-bs4.min.js') }}"></script>
     <!-- overlayScrollbars -->
-    <script src="{{ url('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+    <script
+        src="{{ url('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}">
+    </script>
     <!-- AdminLTE App -->
     <script src="{{ url('dist/js/adminlte.js') }}"></script>
 
