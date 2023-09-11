@@ -29,7 +29,13 @@ class WajibLaporController extends Controller
     }
     public function laporkan()
     {
-        return view('wajib_lapor.Laporkan');
+        if (Auth::user()->role == 'admin') {
+            $data = dataLaporan::join('wajib_lapors', 'data_laporan.wajib_lapors_id', '=', 'wajib_lapors.id')->get();
+            return view('wajib_lapor.Laporkan', compact('data'));
+        }else{
+            $data = dataLaporan::join('wajib_lapors', 'data_laporan.wajib_lapors_id', '=', 'wajib_lapors.id')->where('wajib_lapors.NIK', Auth::user()->NIK)->get();
+            return view('wajib_lapor.Laporkan', compact('data'));
+        }
     }
     /**
      * Show the form for creating a new resource.

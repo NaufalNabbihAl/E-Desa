@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('lokasi');
             $table->date('tanggal');
             $table->date('pulang')->nullable();
+            $table->enum('status', ['Diterima', 'Ditolak', 'Diproses'])->default('Diproses');
             $table->string('deskripsi');
         });
     }
