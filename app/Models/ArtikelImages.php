@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Artikel extends Model
+class ArtikelImages extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id_artikel';
-
     protected $fillable = [
-        'judul',
-        'isi',
+        'name',
+        'artikel_id',
     ];
+
+    public $timestamps = false;
 }

@@ -15,6 +15,7 @@ use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\RtRwController;
 use App\Http\Controllers\UmkmController;
 use App\Http\Controllers\WajibLaporController;
+use App\Http\Controllers\ArtikelController;
 use App\Models\Warga;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,10 +36,6 @@ Route::get('/', function () {
 
 Route::get('/artikel', function () {
     return view('landingArtikel');
-});
-
-Route::get('/galeri', function () {
-    return view('landingGaleri');
 });
 
 Route::get('/umkm', function () {
@@ -135,5 +132,24 @@ Route::middleware('auth')->group(function () {
         Route::get('laporan_kegiatan', [LaporanKegiatanController::class, 'index'])->name('laporan_kegiatan.index');
         Route::get('laporan_kegiatan/create', [LaporanKegiatanController::class, 'create'])->name('laporan_kegiatan.create');
         Route::get('laporan_kegiatan/store', [LaporanKegiatanController::class, 'store'])->name('laporan_kegiatan.store');
+
+        Route::name('artikel.')->prefix('artikel')->group(function () {
+            Route::get('/', [ArtikelController::class, 'index'])->name('index');
+            Route::get('create', [ArtikelController::class, 'create'])->name('create');
+            Route::post('store', [ArtikelController::class, 'store'])->name('store');
+            Route::get('edit/{id}', [ArtikelController::class, 'edit'])->name('edit');
+            Route::post('update', [ArtikelController::class, 'update'])->name('update');
+            Route::delete('delete/{id}', [ArtikelController::class, 'destroy'])->name('destroy');
+            Route::get('deleteGambar/{id}', [ArtikelController::class, 'destroyGambar'])->name('destroyGambar');
+        });
+
+        Route::name('galeri.')->prefix('galeri')->group(function(){
+            Route::get('/', [GaleriController::class, 'index'])->name('index');
+            Route::get('create', [GaleriController::class, 'create'])->name('create');
+            Route::post('store', [GaleriController::class, 'store'])->name('store');
+            Route::get('edit/{id}', [GaleriController::class, 'edit'])->name('edit');
+            Route::post('update', [GaleriController::class, 'update'])->name('update');
+            Route::delete('delete/{id}', [GaleriController::class, 'destroy'])->name('destroy');
+        });
     });
 });

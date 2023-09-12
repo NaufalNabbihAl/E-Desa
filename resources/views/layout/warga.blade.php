@@ -122,7 +122,8 @@
             <li class="nav-item menu-open">
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link @if (Str::contains(Route::currentRouteName(), 'artikel')) active @endif">
+                  <a href="{{ route('artikel.index') }}"
+                    class="nav-link @if (Str::contains(Route::currentRouteName(), 'artikel')) active @endif">
                     <p style="color: white">Artikel</p>
                   </a>
                 </li>
@@ -167,6 +168,12 @@
             }
             if (Str::contains($routeName, 'bank_sampah')) {
                 echo 'Bank Sampah';
+            }
+            if (Str::contains($routeName, 'artikel')) {
+                echo 'Artikel';
+            }
+            if (Str::contains($routeName, 'galeri')) {
+                echo 'Galeri';
             }
           @endphp
         </a>

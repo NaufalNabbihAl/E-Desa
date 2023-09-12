@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id('id_artikel');
             $table->string('judul');
             $table->text('isi');
-            $table->date('tgl_publikasi');
-            $table->string('image');
             $table->timestamps();
         });
     }
