@@ -134,7 +134,8 @@
             <li class="nav-item menu-open">
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link @if (Str::contains(Route::currentRouteName(), 'galeri')) active @endif">
+                  <a href="{{ route('galeri.index') }}"
+                    class="nav-link @if (Str::contains(Route::currentRouteName(), 'galeri')) active @endif">
                     <p style="color: white">Galeri</p>
                   </a>
                 </li>

@@ -16,6 +16,7 @@ use App\Http\Controllers\RtRwController;
 use App\Http\Controllers\UmkmController;
 use App\Http\Controllers\WajibLaporController;
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\GaleriController;
 use App\Models\Warga;
 use Illuminate\Support\Facades\Auth;
 
@@ -145,11 +146,8 @@ Route::middleware('auth')->group(function () {
 
         Route::name('galeri.')->prefix('galeri')->group(function(){
             Route::get('/', [GaleriController::class, 'index'])->name('index');
-            Route::get('create', [GaleriController::class, 'create'])->name('create');
             Route::post('store', [GaleriController::class, 'store'])->name('store');
-            Route::get('edit/{id}', [GaleriController::class, 'edit'])->name('edit');
-            Route::post('update', [GaleriController::class, 'update'])->name('update');
-            Route::delete('delete/{id}', [GaleriController::class, 'destroy'])->name('destroy');
+            Route::get('delete/{id}', [GaleriController::class, 'destroy'])->name('destroy');
         });
     });
 });
