@@ -68,7 +68,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
 
-          {{-- dashboard --}}
+          {{-- dashboard
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
@@ -77,7 +77,7 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> --}}
 
           {{-- jadwal kegiatan --}}
           <li class="nav-item menu-open">
@@ -106,16 +106,18 @@
           </li>
 
           {{-- bank sampah --}}
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('bank_sampah.index') }}"
-                  class="nav-link @if (Str::contains(Route::currentRouteName(), 'bank_sampah')) active @endif">
-                  <p style="color: white">Bank Sampah</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          @if (Auth::user()->role != 'rt' && Auth::user()->role != 'rw')
+            <li class="nav-item menu-open">
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('bank_sampah.data') }}"
+                    class="nav-link @if (Str::contains(Route::currentRouteName(), 'bank_sampah')) active @endif">
+                    <p style="color: white">Bank Sampah</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          @endif
 
           @if (Auth::user()->role == 'admin')
             {{-- artikel --}}
@@ -137,6 +139,18 @@
                   <a href="{{ route('galeri.index') }}"
                     class="nav-link @if (Str::contains(Route::currentRouteName(), 'galeri')) active @endif">
                     <p style="color: white">Galeri</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            {{-- warga --}}
+            <li class="nav-item menu-open">
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('warga.index') }}"
+                    class="nav-link @if (Str::contains(Route::currentRouteName(), 'warga')) active @endif">
+                    <p style="color: white">Warga</p>
                   </a>
                 </li>
               </ul>
@@ -175,6 +189,9 @@
             }
             if (Str::contains($routeName, 'galeri')) {
                 echo 'Galeri';
+            }
+            if (Str::contains($routeName, 'warga')) {
+                echo 'Warga';
             }
           @endphp
         </a>

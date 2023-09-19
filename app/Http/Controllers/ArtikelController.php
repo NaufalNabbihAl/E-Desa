@@ -48,7 +48,7 @@ class ArtikelController extends Controller
 
     public function edit($id)
     {
-        $artikel = Artikel::find($id)->first();
+        $artikel = Artikel::where('id_artikel',$id)->first();
         $gambar = ArtikelImages::where('artikel_id', $id)->get();
         return view('artikel.edit', compact('artikel', 'gambar'));
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\jadwalKegiatan;
+use App\Models\User;
 use App\Models\Warga;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -17,13 +18,13 @@ class JadwalKegiatanController extends Controller
     public function index()
     {
         $warga = Warga::where('NIK', Auth::user()->NIK)->get()->first();
-        if (Auth::user()->role == 'warga') {
+        if (Auth::user()->role != 'admin') {
             $jadwal = jadwalKegiatan::where('tingkat', $warga->rt . '/' . $warga->rw)
                 ->orWhere('tingkat', 'desa')
                 ->orderBy('waktu', 'asc')
                 ->get()
                 ->all();
-        } else if (Auth::user()->role == 'admin') {
+        } else {
             $jadwal = jadwalKegiatan::orderBy('waktu', 'asc')->get()->all();
         }
         return view('jadwal_kegiatan.index', compact(['jadwal']));
@@ -50,16 +51,20 @@ class JadwalKegiatanController extends Controller
             'pembahasan' => 'required',
         ]);
 
-        $tingkat = $request->tingkat;
+        if (Auth::user()->role == 'admin') {
+            $tingkat = $request->tingkat;
 
-        if ($tingkat != 'desa') {
-            $request->validate([
-                'rt' => 'required|numeric',
-                'rw' => 'required|numeric'
-            ]);
+            if ($tingkat != 'desa') {
+                $request->validate([
+                    'rt' => 'required|numeric',
+                    'rw' => 'required|numeric'
+                ]);
 
-            $tingkat = $request->rt . '/' . $request->rw;
-        };
+                $tingkat = $request->rt . '/' . $request->rw;
+            };
+        } else {
+            $tingkat = Warga::where('NIK', Auth::user()->NIK)->get()->first()->rt . '/' . Warga::where('NIK', Auth::user()->NIK)->get()->first()->rw;
+        }
 
         jadwalKegiatan::create([
             'pelaksana' => $request->pelaksana,

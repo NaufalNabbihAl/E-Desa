@@ -17,6 +17,9 @@ use App\Http\Controllers\UmkmController;
 use App\Http\Controllers\WajibLaporController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\GaleriController;
+use App\Models\Artikel;
+use App\Models\ArtikelImages;
+use App\Models\Galeri;
 use App\Models\Warga;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,15 +35,36 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('landing');
+
+    $artikel = Artikel::orderBy('created_at', 'desc')->take(3)->get();
+    $cover = [];
+    foreach ($artikel as $key => $value) {
+        $cover[$key] = ArtikelImages::where('artikel_id', $value->id_artikel)->value('name');
+    }
+
+    return view('landing', compact('artikel', 'cover'));
 });
 
 Route::get('/artikel', function () {
-    return view('landingArtikel');
+
+    $artikel = Artikel::orderBy('created_at', 'desc')->paginate(8);
+    $cover = [];
+    foreach ($artikel as $key => $value) {
+        $cover[$key] = ArtikelImages::where('artikel_id', $value->id_artikel)->value('name');
+    }
+
+    return view('landingArtikel', compact('artikel', 'cover'));
 });
 
 Route::get('/umkm', function () {
     return view('landingUMKM');
+});
+
+Route::get('/galeri', function () {
+
+    $galeri = Galeri::orderBy('created_at', 'desc')->get();
+
+    return view('landingGaleri', compact('galeri'));
 });
 
 Route::group(['middleware' => 'guest'], function () {
@@ -86,12 +110,6 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/', [DashboardController::class, 'indexWarga'])->name('dashboardWarga');
 
-        Route::name('warga.')->group(function () {
-            Route::get('search', [WargaController::class, 'search'])->name('search');
-            Route::get('edit', [WargaController::class, 'edit'])->name('edit');
-            Route::put('update', [WargaController::class, 'update'])->name('update');
-        });
-
         Route::name('peminjaman_barang.')->prefix('peminjamanbarang')->group(function () {
             Route::get('/', [PeminjamanBarangController::class, 'index'])->name('index');
             Route::get('create', [PeminjamanBarangController::class, 'create'])->name('create');
@@ -110,6 +128,7 @@ Route::middleware('auth')->group(function () {
             Route::get('laporkan', [WajibLaporController::class, 'laporkan'])->name('laporkan');
             Route::post('store', [WajibLaporController::class, 'store'])->name('store');
             Route::post('storeLaporan', [WajibLaporController::class, 'storeLaporan'])->name('storeLaporan');
+            Route::put('update', [WajibLaporController::class, 'update'])->name('update');
         });
 
         Route::name('umkm.')->prefix('umkm')->group(function () {
@@ -144,10 +163,19 @@ Route::middleware('auth')->group(function () {
             Route::get('deleteGambar/{id}', [ArtikelController::class, 'destroyGambar'])->name('destroyGambar');
         });
 
-        Route::name('galeri.')->prefix('galeri')->group(function(){
+        Route::name('galeri.')->prefix('galeri')->group(function () {
             Route::get('/', [GaleriController::class, 'index'])->name('index');
             Route::post('store', [GaleriController::class, 'store'])->name('store');
             Route::get('delete/{id}', [GaleriController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::name('warga.')->prefix('warga')->group(function () {
+            Route::get('/', [WargaController::class, 'index'])->name('index');
+            Route::get('create', [WargaController::class, 'create'])->name('create');
+            Route::post('store', [WargaController::class, 'store'])->name('store');
+            Route::get('detail/{id}', [WargaController::class, 'detail'])->name('detail');
+            Route::get('edit', [WargaController::class, 'edit'])->name('edit');
+            Route::put('update', [WargaController::class, 'update'])->name('update');
         });
     });
 });

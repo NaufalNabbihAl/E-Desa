@@ -23,7 +23,7 @@ class AuthController extends Controller
             if (Auth::user()->role == 'warga') {
                 return redirect('/')->with('success', 'Login Berhasil');
             } else {
-                return redirect('/main')->with('success', 'Login Berhasil');
+                return redirect('/main/jadwalkegiatan')->with('success', 'Login Berhasil');
             }
         } else {
             return back()->with('error', 'Email atau Password salah');

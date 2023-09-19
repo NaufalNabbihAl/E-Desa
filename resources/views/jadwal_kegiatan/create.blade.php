@@ -25,13 +25,15 @@
                     <label for="lokasi" class="form-label">Lokasi</label>
                     <input type="text" class="form-control" id="lokasi" name="lokasi">
                   </div>
-                  <div class="mb-3">
-                    <label for="tingkat" class="form-label">Tingkat</label>
-                    <select class="form-select" name="tingkat" id="tingkat">
-                      <option value="desa">Desa</option>
-                      <option value="rt/rw">Rt/Rw</option>
-                    </select>
-                  </div>
+                  @if (Auth::user()->role == 'admin')
+                    <div class="mb-3">
+                      <label for="tingkat" class="form-label">Tingkat</label>
+                      <select class="form-select" name="tingkat" id="tingkat">
+                        <option value="desa">Desa</option>
+                        <option value="rt/rw">Rt/Rw</option>
+                      </select>
+                    </div>
+                  @endif
                   <div class="mb-3" style="display: none" id="rtRwInput">
                     <label id="rtRwLabel" class="form-label text-capitalize"></label>
                     <div class="row">
