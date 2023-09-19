@@ -67,6 +67,14 @@ Route::get('/galeri', function () {
     return view('landingGaleri', compact('galeri'));
 });
 
+Route::get('/artikel/{id}', function ($id) {
+
+    $artikel = Artikel::where('id_artikel', $id)->first();
+    $gambar = ArtikelImages::where('artikel_id', $id)->get();
+
+    return view('detailArtikel', compact('artikel', 'gambar'));
+})->name('detailArtikel');
+
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
