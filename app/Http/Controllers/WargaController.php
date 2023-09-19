@@ -29,15 +29,15 @@ class WargaController extends Controller
             'nama' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
-            'umur' => 'required',
+            'umur' => 'required|numeric',
             'jk' => 'required',
             'pekerjaan_sekolah' => 'required',
             'pekerjaanOrtu'  => 'required',
             'jalan' => 'required',
             'desa' => 'required',
             'kecamatan' => 'required',
-            'rt' => 'required',
-            'rw' => 'required'
+            'rt' => 'required|numeric',
+            'rw' => 'required|numeric'
         ]);
 
         $tempat_tgl =  $request->tempat_lahir . ', ' . $request->tanggal_lahir;

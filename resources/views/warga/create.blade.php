@@ -31,19 +31,31 @@
                   <div class="mb-3">
                     <label for="">Nama</label>
                     <input type="text" class="form-control" id="nama" name="nama">
+                    @if ($errors->has('nama'))
+                      <span class="text-danger">{{ $errors->first('nama') }}</span>
+                    @endif
                   </div>
                   <div class="row mb-3">
                     <div class="col">
                       <label for="">Tempat Lahir</label>
                       <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir">
+                      @if ($errors->has('tempat_lahir'))
+                        <span class="text-danger">{{ $errors->first('tempat_lahir') }}</span>
+                      @endif
                     </div>
                     <div class="col">
                       <label for="">Tanggal Lahir</label>
                       <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir">
+                      @if ($errors->has('tanggal_lahir'))
+                        <span class="text-danger">{{ $errors->first('tanggal_lahir') }}</span>
+                      @endif
                     </div>
                     <div class="col">
                       <label for="">Umur</label>
                       <input type="text" class="form-control" id="umur" name="umur">
+                      @if ($errors->has('umur'))
+                        <span class="text-danger">{{ $errors->first('umur') }}</span>
+                      @endif
                     </div>
                   </div>
                   <div class="mb-3">
@@ -56,31 +68,52 @@
                   <div class="mb-3">
                     <label for="">Pekerjaan/Sekolah</label>
                     <input type="text" class="form-control" id="pekerjaan_sekolah" name="pekerjaan_sekolah">
+                    @if ($errors->has('pekerjaan_sekolah'))
+                      <span class="text-danger">{{ $errors->first('pekerjaan_sekolah') }}</span>
+                    @endif
                   </div>
                   <div class="mb-3">
                     <label for="">Pekerjaan Orang Tua</label>
                     <input type="text" class="form-control" id="pekerjaanOrtu" name="pekerjaanOrtu">
+                    @if ($errors->has('pekerjaanOrtu'))
+                      <span class="text-danger">{{ $errors->first('pekerjaanOrtu') }}</span>
+                    @endif
                   </div>
                   <div class="mb-3">
                     <label for="">Alamat</label>
                     <input type="text" class="form-control" id="jalan" name="jalan">
+                    @if ($errors->has('jalan'))
+                      <span class="text-danger">{{ $errors->first('jalan') }}</span>
+                    @endif
                   </div>
                   <div class="row mb-3">
                     <div class="col">
                       <label for="">RT</label>
                       <input type="text" class="form-control" id="rt" name="rt">
+                      @if ($errors->has('rt'))
+                        <span class="text-danger">{{ $errors->first('rt') }}</span>
+                      @endif
                     </div>
                     <div class="col">
                       <label for="">RW</label>
                       <input type="text" class="form-control" id="rw" name="rw">
+                      @if ($errors->has('rw'))
+                        <span class="text-danger">{{ $errors->first('rw') }}</span>
+                      @endif
                     </div>
                     <div class="col">
                       <label for="">Kecamatan</label>
                       <input type="text" class="form-control" id="kecamatan" name="kecamatan">
+                      @if ($errors->has('kecamatan'))
+                        <span class="text-danger">{{ $errors->first('kecamatan') }}</span>
+                      @endif
                     </div>
                     <div class="col">
                       <label for="">Desa</label>
                       <input type="text" class="form-control" id="desa" name="desa">
+                      @if ($errors->has('desa'))
+                        <span class="text-danger">{{ $errors->first('desa') }}</span>
+                      @endif
                     </div>
                   </div>
                   <button type="submit" class="btn ml-auto text-white"
