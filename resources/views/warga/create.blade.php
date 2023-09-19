@@ -17,6 +17,9 @@
                     <div class="col">
                       <label for="">NIK</label>
                       <input type="text" class="form-control" id="NIK" name="NIK">
+                      @if ($errors->has('NIK'))
+                        <span class="text-danger">{{ $errors->first('NIK') }}</span>
+                      @endif
                     </div>
                     <div class="col">
                       <label for="">Role</label>
