@@ -197,8 +197,10 @@
                       <th scope="col">Tanggal Menginap</th>
                       <th scope="col">Tanggal Pulang</th>
                       <th scope="col">Bukti</th>
-                      <th scope="col" class="text-center">Status</th>
-                      <th class="text-center">Aksi</th>
+                      <th scope="col" class="text-center" style="min-width: 11rem">Status</th>
+                      @if (Auth::user()->role == 'rt')
+                        <th class="text-center">Aksi</th>
+                      @endif
                     </tr>
                   </thead>
                   <tbody>
@@ -228,27 +230,29 @@
                             <span class="rounded-pill p-2" style="background-color: #54BAB9;">Diterima</span>
                           @endif
                         </td>
-                        <td colspan="9">
-                          <div class="row">
-                            <div class="col">
-                              <form action="{{ route('wajib_lapor.update') }}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <input type="hidden" name="id" value="{{ $d->id }}">
-                                <input type="hidden" name="status" value="Diterima">
-                                <button type="submit" class="btn btn-success btn-sm">Terima</button>
-                              </form>
-                            </div>
-                            <div class="col">
-                              <form action="{{ route('wajib_lapor.update') }}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <input type="hidden" name="id" value="{{ $d->id }}">
-                                <input type="hidden" name="status" value="Ditolak">
-                                <button type="submit" class="btn btn-danger btn-sm">Tolak</button>
-                              </form>
-                            </div>
-                        </td>
+                        @if (Auth::user()->role == 'rt')
+                          <td>
+                            <div class="row">
+                              <div class="col">
+                                <form action="{{ route('wajib_lapor.update') }}" method="POST">
+                                  @csrf
+                                  @method('PUT')
+                                  <input type="hidden" name="id" value="{{ $d->id }}">
+                                  <input type="hidden" name="status" value="Diterima">
+                                  <button type="submit" class="btn btn-success btn-sm">Terima</button>
+                                </form>
+                              </div>
+                              <div class="col">
+                                <form action="{{ route('wajib_lapor.update') }}" method="POST">
+                                  @csrf
+                                  @method('PUT')
+                                  <input type="hidden" name="id" value="{{ $d->id }}">
+                                  <input type="hidden" name="status" value="Ditolak">
+                                  <button type="submit" class="btn btn-danger btn-sm">Tolak</button>
+                                </form>
+                              </div>
+                          </td>
+                        @endif
                       </tr>
                     @endforeach
                   </tbody>
