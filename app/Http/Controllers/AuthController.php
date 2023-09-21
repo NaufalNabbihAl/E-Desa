@@ -15,20 +15,20 @@ class AuthController extends Controller
     public function loginPost(Request $request)
     {
         $data = [
-            'username' => $request->NIK,
+            'username' => $request->username,
             'password' => $request->password
         ];
 
         if (Auth::attempt($data)) {
             $request->session()->regenerate();
-            
+
             if (Auth::user()->role == 'warga') {
                 return redirect('/')->with('success', 'Login Berhasil');
             } else {
                 return redirect('/main/jadwalkegiatan')->with('success', 'Login Berhasil');
             }
         } else {
-            return back()->with('error', 'NIK atau Password salah');
+            return back()->with('error', 'Username atau Password salah');
         }
     }
 
