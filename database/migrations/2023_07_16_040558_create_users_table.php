@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->string('NIK')->primary();
+            $table->id();
+            $table->string('NIK')->unique();
             $table->enum('role', ['warga', 'admin', 'rw', 'rt']);
             $table->string('password');
             $table->rememberToken();
