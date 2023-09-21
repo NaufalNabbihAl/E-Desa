@@ -43,7 +43,7 @@ class WargaController extends Controller
         $tempat_tgl =  $request->tempat_lahir . ', ' . $request->tanggal_lahir;
 
         User::create([
-            'NIK' => $request->NIK,
+            'NIK' => bcrypt($request->NIK),
             'password' => bcrypt($request->NIK),
             'role' => $request->role
         ]);
