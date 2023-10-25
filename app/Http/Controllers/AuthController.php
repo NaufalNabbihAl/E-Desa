@@ -15,7 +15,7 @@ class AuthController extends Controller
     public function loginPost(Request $request)
     {
         $data = [
-            'username' => $request->username,
+            'NIK' => $request->nik,
             'password' => $request->password
         ];
 

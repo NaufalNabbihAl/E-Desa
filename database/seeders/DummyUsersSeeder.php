@@ -18,25 +18,21 @@ class DummyUsersSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'NIK' => '1201210015',
-                'username' => 'warga123',
                 'role' => 'warga',
                 'password' => Hash::make('123456')
             ],
             [
                 'NIK' => '1201210016',
-                'username' => 'admin123',
                 'role' => 'admin',
                 'password' => Hash::make('abcde')
             ],
             [
                 'NIK' => '1201210017',
-                'username' => 'rt123',
                 'role' => 'rt',
                 'password' => Hash::make('rt12345')
             ],
             [
                 'NIK' => '1201210018',
-                'username' => 'rw123',
                 'role' => 'rw',
                 'password' => Hash::make('rw12345')
             ]

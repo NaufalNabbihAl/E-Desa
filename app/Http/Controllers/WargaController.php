@@ -26,7 +26,6 @@ class WargaController extends Controller
     {
         $request->validate([
             'NIK' => 'required|unique:wargas|numeric|digits:16',
-            'username' => 'required|unique:users',
             'nama' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
@@ -45,7 +44,6 @@ class WargaController extends Controller
 
         User::create([
             'NIK' => $request->NIK,
-            'username' => $request->username,
             'password' => bcrypt($request->NIK),
             'role' => $request->role
         ]);

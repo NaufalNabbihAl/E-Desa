@@ -30,8 +30,8 @@
           <form action="{{ route('login') }}" method="post">
             @csrf
             <div class="mb-3">
-              <label for="NIK" class="form-label fw-bold">Username</label>
-              <input type="text" class="form-control border border-black rounded-5" name="username" id="username"
+              <label for="NIK" class="form-label fw-bold">NIK</label>
+              <input type="text" class="form-control border border-black rounded-5" name="nik" id="nik"
                 required>
             </div>
             <div class="mb-3">

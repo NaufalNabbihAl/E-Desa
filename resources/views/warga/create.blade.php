@@ -15,17 +15,6 @@
                   @csrf
                   <div class="row mb-3">
                     <div class="col">
-                      <label for="">Username</label>
-                      <input type="text" class="form-control" id="username" name="username">
-                      @if ($errors->has('username'))
-                        <div class="text-danger">
-                          {{ $errors->first('username') }}
-                        </div>
-                      @endif
-                    </div>
-                  </div>
-                  <div class="row mb-3">
-                    <div class="col">
                       <label for="">NIK</label>
                       <input type="text" class="form-control" id="NIK" name="NIK">
                       @if ($errors->has('NIK'))
