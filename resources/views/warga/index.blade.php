@@ -38,7 +38,6 @@
                     <td>
                       <form action="{{ route('warga.destroy') }}" method="POST">
                         @csrf
-                        @method('DELETE')
                         <input type="hidden" name="id" value="{{ $w->id }}">
                         <button type="submit" class="btn btn-danger"
                           onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
