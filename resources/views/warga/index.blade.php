@@ -35,6 +35,15 @@
                     <td>
                       <a class="btn btn-primary" href="{{ route('warga.detail', $w->id) }}" role="button">Detail</a>
                     </td>
+                    <td>
+                      <form action="{{ route('warga.destroy') }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="id" value="{{ $w->id }}">
+                        <button type="submit" class="btn btn-danger"
+                          onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                      </form>
+                    </td>
                   </tr>
                 @endforeach
               </tbody>

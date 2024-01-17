@@ -78,7 +78,7 @@
               <div class="row">
                 <div class="col-lg-5-start">
                   <img src="{{ url('upload/artikel', $cover[$key]) }}" alt="Image"
-                    class="img-fluid"style="object-fit: cover;aspect-ratio: 4/1">
+                    class="img-fluid" style="object-fit: cover;aspect-ratio: 4/1">
                 </div>
                 <div class="col-lg-7">
                   <h2>{{ $a->judul }}</h2>
@@ -90,7 +90,7 @@
                   </div>
                 </div>
                 <div class="col-lg-5 text-lg-end">
-                  <a href="#" class="d-inline-flex align-items-center fs-5 mt-2">
+                  <a href="{{ route('detailArtikel', $a->id_artikel) }}" class="d-inline-flex align-items-center fs-5 mt-2">
                     <span class="me-2">Baca Selengkapnya</span>
                     <span class="icon-link2"></span>
                   </a>

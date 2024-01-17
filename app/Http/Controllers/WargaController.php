@@ -97,6 +97,13 @@ class WargaController extends Controller
             return redirect()->route('warga.edit')->with('error', 'Password yang anda masukkan salah');
         }
     }
+
+    public function destroy(Request $request)
+    {
+        $id = $request->id;
+        Warga::where('id', $id)->delete();
+        return redirect()->route('warga.index')->with('success', 'Berhasil Menghapus Data Warga');
+    }
     // /**
     //  * Display a listing of the resource.
     //  */

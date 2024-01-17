@@ -184,6 +184,7 @@ Route::middleware('auth')->group(function () {
             Route::get('detail/{id}', [WargaController::class, 'detail'])->name('detail');
             Route::get('edit', [WargaController::class, 'edit'])->name('edit');
             Route::put('update', [WargaController::class, 'update'])->name('update');
+            Route::post('destroy', [WargaController::class, 'destroy'])->name('destroy');
         });
     });
 });
